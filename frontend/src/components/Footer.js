@@ -4,9 +4,9 @@ import '../stylesheets/Footer.css'
 
 const Footer = () => {
     return (
-        <footer>
+        <footer className='py-5'>
             <div className='container'>
-                <div className='row pt-5 mx-auto'>
+                <div className='row pt-3 mx-auto'>
                     <div className='col-lg-3 col-md-6 mb-3 footer-one'>
                         <img src='/img/logo2.png' alt='' />
                         <p className='pt-3 pe-5'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt reiciendis vitae

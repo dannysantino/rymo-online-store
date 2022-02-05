@@ -7,6 +7,9 @@ import '../App.css'
 const Shop = () => {
     return (
         <section id="shop" className="py-5 my-5">
+            <div id="shop-bg">
+                <h2>Shop with Us</h2>
+            </div>
             <div className="container mt-5 py-5">
                 <h2 className="fw-bold">Featured Items</h2>
                 <hr />
