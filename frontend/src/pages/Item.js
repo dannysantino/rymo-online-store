@@ -1,6 +1,25 @@
+import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+
+import { getItem } from '../redux/actions/productActions'
+import { addToCart } from '../redux/actions/cartActions'
+
 import '../App.css'
 
 const Item = () => {
+    const { id } = useParams();
+    const [qty, setQty] = useState(1);
+    const dispatch = useDispatch();
+    const data = useSelector(state => state.getItem);
+    const { loading, item, error } = data;
+
+    useEffect(() => {
+        if (item && id !== item._id) {
+            dispatch(getItem(id));
+        }
+    }, [dispatch, item, id]);
+
     return (
         <section className='container pt-5 my-5 product-details'>
             <div className='row mt-5'>

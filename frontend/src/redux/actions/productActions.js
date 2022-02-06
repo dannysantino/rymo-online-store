@@ -1,5 +1,5 @@
 import * as actionTypes from '../constants/productConstants'
-import { axios } from 'axios'
+import axios from 'axios'
 
 export const getProducts = () => async dispatch => {
     try {
@@ -17,10 +17,10 @@ export const getProducts = () => async dispatch => {
     }
 }
 
-export const getItem = id => dispatch => {
+export const getItem = id => async dispatch => {
     try {
         dispatch({ type: actionTypes.GET_ITEM_REQUEST });
-        const { data } = axios.get(`/api/products/${id}`);
+        const { data } = await axios.get(`/api/products/${id}`);
         dispatch({
             type: actionTypes.GET_ITEM_SUCCESS,
             payload: data
