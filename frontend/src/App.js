@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 import Navbar from './components/Navbar'
-import ScrollToTop from './components/ScrollToTop'
 import Home from './pages/Home'
 import Shop from './pages/Shop'
 import Item from './pages/Item'
@@ -9,6 +8,7 @@ import Blog from './pages/Blog'
 import Contact from './pages/Contact'
 import Cart from './pages/Cart'
 import Footer from './components/Footer'
+import ScrollToTop from './utils/ScrollToTop'
 
 import './App.css';
 
