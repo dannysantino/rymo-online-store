@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 
+import { useTitle } from '../utils/hooks';
 import Product from '../components/Product'
 import Loader from '../components/Loader'
 import { getProducts as fetchProducts } from '../redux/actions/productActions';
@@ -9,6 +10,8 @@ import { getProducts as fetchProducts } from '../redux/actions/productActions';
 import '../App.css'
 
 const Shop = () => {
+    useTitle('Shop with Us');
+
     const dispatch = useDispatch();
     const data = useSelector(state => state.getProducts);
     const { loading, products, error } = data;

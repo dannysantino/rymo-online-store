@@ -1,4 +1,8 @@
+import { useTitle } from "../utils/hooks"
+
 const Contact = () => {
+    useTitle('Contact');
+
     return (
         <div id='contact' className='pt-5 my-5'>
             <section id='contact-bg'>

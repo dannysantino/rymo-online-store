@@ -67,24 +67,21 @@
     border-bottom: 1px solid #fff;
 }
 
-#new .one:nth-child(1) .details {
+#new .one:nth-child(n) .details {
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+#new .one:nth-child(1) .details {
     align-items: flex-start;
 }
 
 #new .one:nth-child(2) .details {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
 }
 
 #new .one:nth-child(3) .details {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: flex-end;
 }
 

@@ -1,4 +1,8 @@
+import { useTitle } from "../utils/hooks"
+
 const Blog = () => {
+    useTitle('Blog');
+
     return (
         <>
             <section id='blog-home' className='container pt-5 mt-5'>

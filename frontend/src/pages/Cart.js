@@ -1,12 +1,15 @@
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
 
+import { useTitle } from '../utils/hooks';
 import { addToCart, removeFromCart } from '../redux/actions/cartActions';
 import CartItem from '../components/CartItem'
 
 import '../App.css'
 
 const Cart = () => {
+    useTitle('Your Cart');
+
     let shippingFee = 12.99;
 
     const dispatch = useDispatch();
