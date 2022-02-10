@@ -6,7 +6,7 @@ const Product = ({ data: { _id: id, name, imageUrl, price } }) => {
     return (
         <Link to={`/product/${id}`} className='col-lg-3 col-md-4 text-center product'>
             <img className='img-fluid mb-3' alt={name} src={imageUrl} />
-            <div className='star'>
+            <div className='stars'>
                 <i className='fas fa-star'></i>
                 <i className='fas fa-star'></i>
                 <i className='fas fa-star'></i>

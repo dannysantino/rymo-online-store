@@ -1,19 +1,36 @@
 import { Link } from 'react-router-dom'
 
-const CartItem = () => {
+const CartItem = ({ data: { _id: id, name, imageUrl, price, countInStock, qty }, qtyChangeHandler, removeHandler }) => {
     return (
         <tr>
-            <td><Link to='#'><i className='fas fa-trash-alt'></i></Link></td>
-            <td><img src='img/shoes/1.jpg' alt='' /></td>
             <td>
-                <Link to={`/product/${1840291}`}><h5>Blue Sneakers</h5></Link>
+                <button onClick={() => removeHandler(id)}>
+                    <i className='fas fa-trash-alt'></i>
+                </button>
             </td>
             <td>
-                <h5>$46.99</h5>
+                <img src={imageUrl} alt={name} />
             </td>
-            <td><input type='number' className='w-25 ps-1' defaultValue='3' /></td>
             <td>
-                <h5>$140.97</h5>
+                <Link to={`/product/${id}`}><h5>{name}</h5></Link>
+            </td>
+            <td>
+                <h5>${price}</h5>
+            </td>
+            <td>
+                <select
+                    name='qty'
+                    className='qty w-25 ps-1 my-3'
+                    defaultValue={qty}
+                    onChange={e => qtyChangeHandler(id, e.target.value)}
+                >
+                    {[...Array(countInStock).keys()].map(e => (
+                        <option key={e + 1} value={e + 1}>{e + 1}</option>
+                    ))}
+                </select>
+            </td>
+            <td>
+                <h5>${price * qty}</h5>
             </td>
         </tr>
     )

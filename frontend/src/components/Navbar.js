@@ -1,8 +1,12 @@
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 import '../stylesheets/Navbar.css'
 
 const Navbar = () => {
+    const { cartItems } = useSelector(state => state.cart);
+    const cartCount = cartItems.reduce((qty, e) => e.qty + qty, 0);
+
     return (
         <nav className='navbar navbar-expand-lg navbar-light bg-light py-3 fixed-top'>
             <div className='container'>
@@ -15,25 +19,25 @@ const Navbar = () => {
                 <div className='collapse navbar-collapse' id='navbarSupportedContent'>
                     <ul className='navbar-nav ms-auto mb-2 mb-lg-0'>
                         <li className='nav-item'>
-                            <Link to='/' className='nav-link active'>Home</Link>
+                            <NavLink to='/' className={({ isActive }) => (isActive ? 'active nav-link' : 'inactive nav-link')}>Home</NavLink>
                         </li>
                         <li className='nav-item'>
-                            <Link to='/shop' className='nav-link'>Shop</Link>
+                            <NavLink to='/shop' className={({ isActive }) => (isActive ? 'active nav-link' : 'inactive nav-link')}>Shop</NavLink>
                         </li>
                         <li className='nav-item'>
-                            <Link to='/blog' className='nav-link'>Blog</Link>
+                            <NavLink to='/blog' className={({ isActive }) => (isActive ? 'active nav-link' : 'inactive nav-link')}>Blog</NavLink>
                         </li>
                         <li className='nav-item'>
-                            <Link to='/contact' className='nav-link'>Contact Us</Link>
+                            <NavLink to='/contact' className={({ isActive }) => (isActive ? 'active nav-link' : 'inactive nav-link')}>Contact Us</NavLink>
                         </li>
                         <li className='nav-item search'>
                             <i className='fal fa-search'></i>
                         </li>
                         <li className='nav-item cart'>
-                            <Link to='/cart' className='nav-link btn'>
+                            <NavLink to='/cart' className={({ isActive }) => (isActive ? 'nav-link btn btn-active' : 'nav-link btn')}>
                                 <i className='fad fa-shopping-cart'></i>
-                                <span className='cart-badge'>0</span>
-                            </Link>
+                                <span className='cart-badge'>{cartCount}</span>
+                            </NavLink>
                         </li>
                     </ul>
                 </div>

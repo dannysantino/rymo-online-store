@@ -22,7 +22,7 @@ const Shop = () => {
             <div id='shop-bg'>
                 <h2>Shop with Us</h2>
             </div>
-            <div className='container mt-5 py-5'>
+            <div className='container py-5 mt-5'>
                 <h2 className='fw-bold'>Featured Items</h2>
                 <hr />
                 <p>Check out our new line of featured products which are updated daily</p>
@@ -32,7 +32,7 @@ const Shop = () => {
                     {loading
                         ? <Loader />
                         : error
-                            ? <h5>{error}</h5>
+                            ? <h5>{error}... Please, reload page</h5>
                             : products.map(e => <Product data={e} key={e._id} />)
                     }
                     <nav aria-label='...'>

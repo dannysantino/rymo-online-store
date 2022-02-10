@@ -4,15 +4,17 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { getItem } from '../redux/actions/productActions'
 import { addToCart } from '../redux/actions/cartActions'
+import Featured from '../components/Featured'
 
 import '../App.css'
+import Loader from '../components/Loader'
 
 const Item = () => {
     const { id } = useParams();
     const [qty, setQty] = useState(1);
     const dispatch = useDispatch();
-    const data = useSelector(state => state.getItem);
-    const { loading, item, error } = data;
+    const { loading, item, error } = useSelector(state => state.getItem);
+    const { cartItems } = useSelector(state => state.cart);
 
     useEffect(() => {
         if (item && id !== item._id) {
@@ -20,51 +22,95 @@ const Item = () => {
         }
     }, [dispatch, item, id]);
 
-    return (
-        <section className='container pt-5 my-5 product-details'>
-            <div className='row mt-5'>
-                <div className='col-lg-5 col-md-12'>
-                    <img src='/img/shop/1.jpg' id='main-img' className='img-fluid w-100 pb-1' alt='blue t-shirt' />
-                    <div className='small-img-group'>
-                        <div className='small-img-col'>
-                            <img src='/img/shop/1.jpg' width='100%' className='small-img' alt='blue t-shirt' />
-                        </div>
-                        <div className='small-img-col'>
-                            <img src='/img/shop/24.jpg' width='100%' className='small-img' alt='white t-shirt' />
-                        </div>
-                        <div className='small-img-col'>
-                            <img src='/img/shop/25.jpg' width='100%' className='small-img' alt='red t-shirt' />
-                        </div>
-                        <div className='small-img-col'>
-                            <img src='/img/shop/26.jpg' width='100%' className='small-img' alt='green t-shirt' />
-                        </div>
-                    </div>
-                </div>
+    const addToCartHandler = () => {
+        dispatch(addToCart(item._id, qty));
+        if (cartItems && cartItems.length > 0) {
+            const foundItem = cartItems.filter(e => e._id === item._id);
+            if (foundItem) {
+                const alertBox = document.getElementById('alert-box');
+                const alert = (message, type) => {
+                    alertBox.innerHTML = `<div class='alert alert-${type} alert-dismissible fade show' role='alert'>
+                                            <i class='bi bi-check-circle-fill'></i>
+                                            ${message}
+                                            <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                                        </div>`
+                }
+                alert('Your item has been added to your cart!', 'success');
+            }
+        }
+    }
 
-                <div className='col-lg-6 col-md-12 pt-5 pt-lg-3'>
-                    <h6>Home / T-Shirt</h6>
-                    <h3 className='py-4'>Men's Fashion T-Shirt</h3>
-                    <h2>$129.99</h2>
-                    <p>Status: <span>In Stock</span></p>
-                    <select className='my-3'>
-                        <option>Select size</option>
-                        <option>Small</option>
-                        <option>Large</option>
-                        <option>XL</option>
-                        <option>XXL</option>
-                    </select>
-                    <input type='number' defaultValue='1' />
-                    <button className='buy-btn'>Add to cart</button>
-                    <h4 className='my-5'>Product details</h4>
-                    <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo iure maiores ducimus fuga autem porro
-                        minima voluptatibus quibusdam iusto enim rem, illum officia veritatis aperiam nisi ex similique
-                        quasi exercitationem?
-                        Exercitationem dolorem aperiam libero omnis voluptas excepturi deserunt, nihil laborum quidem atque
-                        officia, neque similique repellat aliquam nostrum! Consequatur magni labore, officia voluptatibus ex
-                        tenetur. Maiores fugit veniam ratione quaerat?</span>
+    return (
+        <>
+            <section className='container pt-5 my-5 product-details'>
+                <div className='row mt-5'>
+                    {loading
+                        ? <Loader />
+                        : error
+                            ? <h5>{error}</h5>
+                            : (
+                                <>
+                                    <div className='col-lg-5 col-md-12'>
+                                        <img src={item.imageUrl} id='main-img' className='img-fluid w-100 pb-1' alt='' />
+                                        <div className='small-img-group'>
+                                            <div className='small-img-col'>
+                                                <img src={item.imageUrl} width='100%' className='small-img' alt='' />
+                                            </div>
+                                            <div className='small-img-col'>
+                                                <img src={item.imageUrl} width='100%' className='small-img' alt='' />
+                                            </div>
+                                            <div className='small-img-col'>
+                                                <img src={item.imageUrl} width='100%' className='small-img' alt='' />
+                                            </div>
+                                            <div className='small-img-col'>
+                                                <img src={item.imageUrl} width='100%' className='small-img' alt='' />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className='col-lg-6 col-md-12 pt-5 pt-lg-3'>
+                                        <h6>Home / T-Shirt</h6>
+                                        <h3 className='py-4'>{item.name}</h3>
+                                        <h2>${item.price}</h2>
+                                        <p>Status: {item.countInStock > 0
+                                            ? <span className='in-stock'>In stock</span>
+                                            : <span className='out-of-stock'>Out of stock</span>}
+                                        </p>
+                                        <select className='size my-3'>
+                                            <option>Select size</option>
+                                            <option>Small</option>
+                                            <option>Large</option>
+                                            <option>XL</option>
+                                            <option>XXL</option>
+                                        </select>
+                                        <div id='alert-box'></div>
+                                        <select className='qty my-3' value={qty} onChange={e => setQty(e.target.value)}>
+                                            {[...Array(item.countInStock).keys()].map(e => (
+                                                <option key={e + 1} value={e + 1}>{e + 1}</option>
+                                            ))}
+                                        </select>
+                                        <button className='buy-btn' onClick={addToCartHandler}>Add to cart</button>
+                                        <h4 className='my-5'>Product details</h4>
+                                        <span>{item.description}</span>
+                                    </div>
+                                </>
+                            )
+                    }
                 </div>
-            </div>
-        </section>
+            </section>
+
+            <section id='related' className='pb-5 my-5'>
+                <div className='container text-center mt-5 py-5'>
+                    <h2>Related Items</h2>
+                    <hr className='mx-auto' />
+                    <p>Check out our new line of featured products which are updated daily</p>
+                </div>
+                <div className='row container-fluid mx-auto'>
+                    <Featured data={'featured'} />
+                </div>
+            </section>
+        </>
+
     )
 }
 

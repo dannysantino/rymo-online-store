@@ -47,6 +47,10 @@
     background-color: #fd8c66;
 }
 
+.navbar .navbar-nav .cart .nav-link.btn-active {
+    background-color: #fb774b;
+}
+
 .navbar .navbar-nav .cart .cart-badge {
     width: 24px;
     height: 24px;

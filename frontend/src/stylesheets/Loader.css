@@ -1,78 +1,46 @@
 #loader {
-    width: 20rem;
+    width: 15rem;
+    height: 20rem;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
+    align-items: center;
   }
   
-  .circle {
-    width: 2rem;
-    height: 2rem;
-    border-radius: 50%;
-    position: relative;
+  .line {
+    width: .7rem;
+    height: 3rem;
+    background-color: #fb774b;
+    border-radius: 1rem;
   }
   
-  .circle:nth-child(1) {
-    background-color: red;
+  .line:nth-child(1) {
+    animation: lines .5s .6s infinite;
   }
   
-  .circle:nth-child(2) {
-    background-color: orange;
+  .line:nth-child(2) {
+    animation: lines .5s .3s infinite;
   }
   
-  .circle:nth-child(3) {
-    background-color: yellow;
+  .line:nth-child(3) {
+    animation: lines .5s infinite;
   }
   
-  .circle:nth-child(4) {
-    background-color: green;
+  .line:nth-child(4) {
+    animation: lines .5s .3s infinite;
   }
   
-  .circle:nth-child(5) {
-    background-color: blue;
+  .line:nth-child(5) {
+    animation: lines .5s .6s infinite;
   }
   
-  .circle::before {
-    content: "";
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    border-radius: 50%;
-    opacity: .5;
-    animation: flashes 2s ease-out infinite;
-  }
-  
-  .circle:nth-child(1)::before {
-    background-color: red;
-  }
-  
-  .circle:nth-child(2)::before {
-    background-color: orange;
-    animation-delay: .2s;
-  }
-  
-  .circle:nth-child(3)::before {
-    background-color: yellow;
-    animation-delay: .4s;
-  }
-  
-  .circle:nth-child(4)::before {
-    background-color: green;
-    animation-delay: .6s;
-  }
-  
-  .circle:nth-child(5)::before {
-    background-color: blue;
-    animation-delay: .8s;
-  }
-  
-  @keyframes flashes {
+  @keyframes lines {
     0% {
-      transform: scale(1);
+      height: 3rem;
     }
-    50%, 75% {
-      transform: scale(2.5);
+    50% {
+      height: 10rem;
     }
-    80%, 100% {
-      opacity: 0;
+    100% {
+      height: 3rem;
     }
   }
