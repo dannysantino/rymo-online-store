@@ -31,7 +31,7 @@ const Home = () => {
                 <div className='row p-0 m-0'>
                     <div className='col-12 col-lg-4 one px-3'>
                         <img src='/img/new/1.jpg' className='img-fluid' alt='pair of sneakers' />
-                        <div className='details ps-5 ps-lg-4'>
+                        <div className='details ps-4'>
                             <h2>Supreme Sneakers</h2>
                             <Link to='/shop' className='text-uppercase'>Shop Now</Link>
                         </div>
@@ -45,7 +45,7 @@ const Home = () => {
                     </div>
                     <div className='col-12 col-lg-4 one px-3'>
                         <img src='/img/new/5.jpg' className='img-fluid' alt='woman in gray jacket with jewelry on fingers' />
-                        <div className='details pe-5 pe-lg-4'>
+                        <div className='details pe-4'>
                             <h2>Katie Koutoure</h2>
                             <Link to='/shop' className='text-uppercase'>Shop Now</Link>
                         </div>
@@ -83,7 +83,7 @@ const Home = () => {
                 </div>
             </section>
 
-            <section id='watches' className='my-5'>
+            <section id='watches'>
                 <div className='container text-center py-5'>
                     <h2>Wrist Watches</h2>
                     <hr className='mx-auto' />

@@ -30,7 +30,7 @@ const Blog = () => {
                         <div className='post-img'>
                             <img src='/img/blog/3.jpg' className='img-fluid w-100' alt='' />
                         </div>
-                        <h3 className='text-center fw-normal pt-3'>Casual of Formal: Do it in Style</h3>
+                        <h3 className='text-center fw-normal pt-3'>Casual or Formal: Do it in Style</h3>
                         <p className='text-center'>Feb 19, 2021</p>
                     </div>
                     <div className='post col-md-6 pb-5'>

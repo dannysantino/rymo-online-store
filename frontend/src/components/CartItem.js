@@ -30,7 +30,7 @@ const CartItem = ({ data: { _id: id, name, imageUrl, price, countInStock, qty },
                 </select>
             </td>
             <td>
-                <h5>${price * qty}</h5>
+                <h5>${(price * qty).toFixed(2)}</h5>
             </td>
         </tr>
     )

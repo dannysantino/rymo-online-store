@@ -5,16 +5,15 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getItem } from '../redux/actions/productActions'
 import { addToCart } from '../redux/actions/cartActions'
 import Featured from '../components/Featured'
+import Loader from '../components/Loader'
 
 import '../App.css'
-import Loader from '../components/Loader'
 
 const Item = () => {
     const { id } = useParams();
     const [qty, setQty] = useState(1);
     const dispatch = useDispatch();
     const { loading, item, error } = useSelector(state => state.getItem);
-    const { cartItems } = useSelector(state => state.cart);
 
     useEffect(() => {
         if (item && id !== item._id) {
@@ -23,21 +22,18 @@ const Item = () => {
     }, [dispatch, item, id]);
 
     const addToCartHandler = () => {
-        dispatch(addToCart(item._id, qty));
-        if (cartItems && cartItems.length > 0) {
-            const foundItem = cartItems.filter(e => e._id === item._id);
-            if (foundItem) {
+        dispatch(addToCart(item._id, qty))
+            .then(res => {
                 const alertBox = document.getElementById('alert-box');
-                const alert = (message, type) => {
+                const alert = (item, type) => {
                     alertBox.innerHTML = `<div class='alert alert-${type} alert-dismissible fade show' role='alert'>
                                             <i class='bi bi-check-circle-fill'></i>
-                                            ${message}
+                                            <span class='fw-bold'>${item}</span> has been added to your cart!
                                             <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                                         </div>`
                 }
-                alert('Your item has been added to your cart!', 'success');
-            }
-        }
+                alert(`${res}`, 'success');
+            });
     }
 
     return (
@@ -69,7 +65,7 @@ const Item = () => {
                                     </div>
 
                                     <div className='col-lg-6 col-md-12 pt-5 pt-lg-3'>
-                                        <h6>Home / T-Shirt</h6>
+                                        <h6>Home / {item.name}</h6>
                                         <h3 className='py-4'>{item.name}</h3>
                                         <h2>${item.price}</h2>
                                         <p>Status: {item.countInStock > 0
@@ -100,7 +96,7 @@ const Item = () => {
             </section>
 
             <section id='related' className='pb-5 my-5'>
-                <div className='container text-center mt-5 py-5'>
+                <div className='container text-center py-5'>
                     <h2>Related Items</h2>
                     <hr className='mx-auto' />
                     <p>Check out our new line of featured products which are updated daily</p>
@@ -110,7 +106,6 @@ const Item = () => {
                 </div>
             </section>
         </>
-
     )
 }
 

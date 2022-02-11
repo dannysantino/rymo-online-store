@@ -20,9 +20,6 @@ const productSchema = new Schema({
     imageUrl: {
         type: String,
         required: true
-    },
-    rating: {
-        type: Number
     }
 });
 

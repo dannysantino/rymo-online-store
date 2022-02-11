@@ -14,7 +14,7 @@ const Contact = () => {
                     <div className='col-12 col-md-5'>
                         <h2>Get in touch</h2>
                         <hr />
-                        <p className='lead'>For any complaints or suggestions, kindly reach out to us through any of the below means or fill out the form and we'll get back to you as soon as possible</p>
+                        <p className='lead'>For any complaints or suggestions, kindly reach out to us through any of the below means or fill out the form and we'll get back to you as soon as possible.</p>
                         <div className='contact-details'>
                             <div className='hq contacts my-5'>
                                 <h4 className='mb-3'>Headquarters</h4>
