@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 import '../stylesheets/Navbar.css'
@@ -10,7 +10,7 @@ const Navbar = () => {
     return (
         <nav className='navbar navbar-expand-lg navbar-light bg-light py-3 fixed-top'>
             <div className='container'>
-                <img src='/img/logo1.png' alt='rymo logo' />
+                <Link to='/'><img src='/img/logo1.png' alt='rymo logo' /></Link>
                 <button className='navbar-toggler' type='button' data-bs-toggle='collapse'
                     data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false'
                     aria-label='Toggle navigation'>
