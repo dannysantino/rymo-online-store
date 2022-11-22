@@ -7,6 +7,13 @@ const Navbar = () => {
     const { cartItems } = useSelector(state => state.cart);
     const cartCount = cartItems.reduce((qty, e) => e.qty + qty, 0);
 
+    const handleClick = e => {
+        const tag = e.target.tagName;
+        if (window.innerWidth < 992 && (tag === 'A' || tag === 'I')) {
+            document.getElementsByClassName('navbar-collapse')[0].classList.remove('show');
+        }
+    }
+
     return (
         <nav className='navbar navbar-expand-lg navbar-light bg-light py-3 fixed-top'>
             <div className='container'>
@@ -18,23 +25,41 @@ const Navbar = () => {
                 </button>
                 <div className='collapse navbar-collapse' id='navbarSupportedContent'>
                     <ul className='navbar-nav ms-auto mb-2 mb-lg-0'>
-                        <li className='nav-item'>
-                            <NavLink to='/' className={({ isActive }) => (isActive ? 'active nav-link' : 'inactive nav-link')}>Home</NavLink>
+                        <li className='nav-item' onClick={handleClick}>
+                            <NavLink to='/'
+                                className={({ isActive }) => (isActive ? 'active nav-link' : 'inactive nav-link')}
+                            >
+                                Home
+                            </NavLink>
                         </li>
-                        <li className='nav-item'>
-                            <NavLink to='/shop' className={({ isActive }) => (isActive ? 'active nav-link' : 'inactive nav-link')}>Shop</NavLink>
+                        <li className='nav-item' onClick={handleClick}>
+                            <NavLink to='/shop'
+                                className={({ isActive }) => (isActive ? 'active nav-link' : 'inactive nav-link')}
+                            >
+                                Shop
+                            </NavLink>
                         </li>
-                        <li className='nav-item'>
-                            <NavLink to='/blog' className={({ isActive }) => (isActive ? 'active nav-link' : 'inactive nav-link')}>Blog</NavLink>
+                        <li className='nav-item' onClick={handleClick}>
+                            <NavLink to='/blog'
+                                className={({ isActive }) => (isActive ? 'active nav-link' : 'inactive nav-link')}
+                            >
+                                Blog
+                            </NavLink>
                         </li>
-                        <li className='nav-item'>
-                            <NavLink to='/contact' className={({ isActive }) => (isActive ? 'active nav-link' : 'inactive nav-link')}>Contact Us</NavLink>
+                        <li className='nav-item' onClick={handleClick}>
+                            <NavLink to='/contact'
+                                className={({ isActive }) => (isActive ? 'active nav-link' : 'inactive nav-link')}
+                            >
+                                Contact Us
+                            </NavLink>
                         </li>
-                        <li className='nav-item search'>
+                        <li className='nav-item search' onClick={handleClick}>
                             <i className='fal fa-search'></i>
                         </li>
-                        <li className='nav-item cart'>
-                            <NavLink to='/cart' className={({ isActive }) => (isActive ? 'nav-link btn btn-active' : 'nav-link btn')}>
+                        <li className='nav-item cart' onClick={handleClick}>
+                            <NavLink to='/cart'
+                                className={({ isActive }) => (isActive ? 'nav-link btn btn-active' : 'nav-link btn')}
+                            >
                                 <i className='fad fa-shopping-cart'></i>
                                 <span className='cart-badge'>{cartCount}</span>
                             </NavLink>
