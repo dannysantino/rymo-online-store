@@ -1,5 +1,5 @@
 {
-  "name": "frontend",
+  "name": "rymo-online-store-frontend",
   "version": "0.1.0",
   "proxy": "https://rymo-online-backend.herokuapp.com/",
   "private": true,
