@@ -27,32 +27,34 @@ Deployed on Netlify **[here](https://rymostore.netlify.app)**
 
 1. Clone the repository
 
-`git clone https://github.com/dannysantino/rymo-online-store.git`
+    `git clone https://github.com/dannysantino/rymo-online-store.git`
 
 2. Install dependencies
 
-`cd rymo-online-store/backend`
-`npm install`
+    ```
+    cd rymo-online-store/backend
+    npm install
 
-`cd ../frontend`
-`npm install`
+    cd ../frontend
+    npm install
+    ```
 
 
 3. Set up a MongoDB database, add the `URI` and a `PORT` number to a `.env` file in the root directory
 
-`touch .env`
+    `touch .env`
 
-Input the following
-`PORT=5000`
-`MONGO_URI=[your_mongo_uri]`
+    Input the following
+    ```
+    PORT=5000
+    MONGO_URI=[your_mongo_uri]
+    ```
 
 4. Start the development servers
 
-In the root directory, run
-`npm start`
-
-And in a separate terminal, run
-`npm run client`
+    In the root directory, run
+    `npm start`. And in a separate terminal, run
+    `npm run client`
 
 Alternatively, you can run `npm install` in the root directory to install **[concurrently](https://github.com/open-cli-tools/concurrently#readme)**, a tool that runs multiple commands simultaneously. Then, you can start both servers with `npm run dev`
 
